@@ -103,6 +103,59 @@ def scan(path: str) -> dict:
     return {"path": path, "rows": rows, "buckets": buckets}
 
 
+def fix_document_ids(row: dict, uuid_index: dict) -> tuple:
+    """Repair a malformed document_ids field. Returns (fixed_row, note|None).
+
+    Handles the two malformations found by running comparative_eval.py against
+    real matrix output (it validates document_ids strictly; the pointwise
+    scorer and the original tool_call_integrity scanner both missed these):
+
+    * document_ids is a string containing a Python list repr, e.g.
+      "['dsid_a', 'dsid_b']" -- parsed with ast.literal_eval, which is safe
+      here because the result is checked (must become a list of strings)
+      before being accepted; never eval()'d as code.
+    * a document id lost its "dsid_" prefix -- only added back if
+      "dsid_<id>" is a real key in the corpus's uuid index, so this can only
+      ever recover a real document, never invent one.
+
+    Returns the original row unchanged, with note=None, if nothing needed
+    fixing or a problem could not be safely resolved.
+    """
+    import ast
+
+    doc_ids = row.get("document_ids")
+    note = None
+
+    if isinstance(doc_ids, str):
+        try:
+            parsed = ast.literal_eval(doc_ids)
+        except (ValueError, SyntaxError):
+            parsed = None
+        if isinstance(parsed, list) and all(isinstance(x, str) for x in parsed):
+            doc_ids = parsed
+            note = f"parsed stringified list ({len(parsed)} ids)"
+        else:
+            return row, None  # not a safely-parseable shape; leave for a human
+
+    if isinstance(doc_ids, list):
+        repaired = []
+        prefixed_count = 0
+        for d in doc_ids:
+            if isinstance(d, str) and d and not d.startswith("dsid_") and f"dsid_{d}" in uuid_index:
+                repaired.append(f"dsid_{d}")
+                prefixed_count += 1
+            else:
+                repaired.append(d)
+        if prefixed_count:
+            doc_ids = repaired
+            prefix_note = f"restored dsid_ prefix on {prefixed_count} id(s)"
+            note = f"{note}; {prefix_note}" if note else prefix_note
+
+    if note is None:
+        return row, None
+    return {**row, "document_ids": doc_ids}, note
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("files", nargs="+")
@@ -115,11 +168,44 @@ def main() -> None:
         "--run-log",
         help="harness log, used to attribute each blank row to an exception or not",
     )
+    parser.add_argument(
+        "--fix-document-ids",
+        help=(
+            "repair malformed document_ids (stringified lists, missing dsid_ "
+            "prefixes) in place, verified against this uuid_index.json"
+        ),
+    )
     args = parser.parse_args()
 
     paths = sorted({p for pattern in args.files for p in glob.glob(pattern)})
     if not paths:
         raise SystemExit("no matching files")
+
+    if args.fix_document_ids:
+        uuid_index = json.load(open(args.fix_document_ids))
+        print("=" * 82)
+        print("DOCUMENT ID REPAIR")
+        print("=" * 82)
+        any_fixed = False
+        for path in paths:
+            rows = [json.loads(line) for line in open(path) if line.strip()]
+            fixed_rows, notes = [], []
+            for row in rows:
+                fixed, note = fix_document_ids(row, uuid_index)
+                fixed_rows.append(fixed)
+                if note:
+                    notes.append((row["question_id"], note))
+            if notes:
+                any_fixed = True
+                print(f"\n  {os.path.basename(path)}")
+                for qid, note in notes:
+                    print(f"    {qid}: {note}")
+                with open(path, "w") as handle:
+                    for row in fixed_rows:
+                        handle.write(json.dumps(row) + "\n")
+        if not any_fixed:
+            print("\nNo malformed document_ids found.")
+        print()
 
     print("=" * 82)
     print("ANSWER ROW TRIAGE")

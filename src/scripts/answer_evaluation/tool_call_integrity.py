@@ -73,12 +73,35 @@ PSEUDO_CALL = re.compile(
 
 
 def scan_answer(row: dict) -> list:
-    """Return the list of integrity problems for one answer row."""
+    """Return the list of integrity problems for one answer row.
+
+    Two of these signatures were only found by running comparative_eval.py
+    against real output, because it validates document_ids strictly where
+    metrics_based_eval.py and this scanner's earlier version did not:
+
+    * malformed_document_ids -- document_ids came back as a string
+      (sometimes literally `str(list)`, e.g. "['dsid_a', 'dsid_b']") instead
+      of a JSON/Python list. A non-empty string is truthy, so the earlier
+      no_citations check missed this entirely; comparative_eval.py's document
+      lookup then fails with "expected list, got str".
+    * missing_dsid_prefix -- a document id lost its required "dsid_" prefix
+      (e.g. "1980f45c..." instead of "dsid_1980f45c..."). This is not a
+      hallucinated id -- the underlying document is real -- so it is
+      repairable via repair_failed_answers.py's --fix-document-ids rather
+      than something to drop and re-run.
+    """
     problems = []
     text = row.get("answer") or ""
+    doc_ids = row.get("document_ids")
 
-    if not row.get("document_ids"):
+    if isinstance(doc_ids, str):
+        problems.append("malformed_document_ids")
+    elif not doc_ids:
         problems.append("no_citations")
+    elif isinstance(doc_ids, list) and any(
+        isinstance(d, str) and d and not d.startswith("dsid_") for d in doc_ids
+    ):
+        problems.append("missing_dsid_prefix")
 
     found_markers = [m for m in TEMPLATE_MARKERS if m in text]
     if found_markers:
@@ -93,7 +116,7 @@ def scan_answer(row: dict) -> list:
 def scan_file(path: str) -> dict:
     rows = [json.loads(line) for line in open(path) if line.strip()]
     flagged = {}
-    counts = {"no_citations": 0, "template_leak": 0, "pseudo_tool_call": 0}
+    counts = {"no_citations": 0, "template_leak": 0, "pseudo_tool_call": 0, "malformed_document_ids": 0, "missing_dsid_prefix": 0}
     for row in rows:
         problems = scan_answer(row)
         if problems:
@@ -127,7 +150,7 @@ def main() -> None:
     print("=" * 84)
     print("TOOL-CALL INTEGRITY")
     print("=" * 84)
-    print(f"{'file':<44}{'n':>4}{'clean':>7}{'nocite':>8}{'tmpl':>6}{'pseudo':>8}")
+    print(f"{'file':<44}{'n':>4}{'clean':>7}{'nocite':>8}{'tmpl':>6}{'pseudo':>8}{'strlist':>9}{'noprefix':>10}")
     print("-" * 84)
 
     reports = []
@@ -138,6 +161,7 @@ def main() -> None:
         print(
             f"{os.path.basename(path):<44}{r['total']:>4}{r['clean']:>7}"
             f"{c['no_citations']:>8}{c['template_leak']:>6}{c['pseudo_tool_call']:>8}"
+            f"{c['malformed_document_ids']:>9}{c['missing_dsid_prefix']:>10}"
         )
 
     detail = [r for r in reports if r["flagged"]]
