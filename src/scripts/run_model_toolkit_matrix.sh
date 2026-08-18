@@ -140,6 +140,17 @@ for model in "${MODELS[@]}"; do
   done
 done
 
+# --- tool-call integrity over the full answer files ----------------------------
+# A model that fails to emit a structured tool call does not error -- it
+# free-texts, and some models narrate a tool call and invent its result. Those
+# answers still get scored, which silently prices an integration defect as a
+# quality difference. Check before scoring so the numbers can be read honestly.
+echo
+echo "============ tool-call integrity ============"
+$PY -m src.scripts.answer_evaluation.tool_call_integrity \
+  "$OUT_DIR"/system_*.jsonl \
+  --json "$OUT_DIR/results_tool_call_integrity.json" || true
+
 # --- pointwise scoring -------------------------------------------------------
 for model in "${MODELS[@]}"; do
   slug=$(slug_for "$model")
