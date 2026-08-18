@@ -28,6 +28,7 @@ from google import genai
 from google.genai import types
 
 from src.llm.agentic_model import resolve_agentic_model, tool_call_reminder
+from src.llm.telemetry import QuestionTelemetry, append_telemetry, telemetry_path_for
 from src.scripts.answer_generation.vertex_retrieval import select_questions
 from src.paths import QUESTIONS_PATH
 from src.utils.document_content import extract_document_content
@@ -142,8 +143,10 @@ async def process_question(
     output: str,
     write_lock: threading.Lock,
     semaphore: asyncio.Semaphore,
+    telemetry_lock: threading.Lock,
 ) -> None:
     qid = question["question_id"]
+    telemetry = QuestionTelemetry(question_id=qid)
     async with semaphore:
         state: dict = {"answer": None, "document_ids": None, "read_ids": []}
         tools = [
@@ -169,6 +172,7 @@ async def process_question(
                 session_id=qid,
                 new_message=types.Content(role="user", parts=[types.Part(text=question["question"])]),
             ):
+                telemetry.record_event(getattr(event, "usage_metadata", None))
                 if event.content and event.content.parts:
                     for part in event.content.parts:
                         if part.text:
@@ -195,6 +199,7 @@ async def process_question(
             {"question_id": qid, "answer": answer, "document_ids": document_ids},
             write_lock,
         )
+        append_telemetry(telemetry_path_for(output), telemetry.finish(), telemetry_lock)
         print(f"  {qid} done (finish_answer called: {state['answer'] is not None})")
 
 
@@ -231,13 +236,14 @@ async def main_async(args: argparse.Namespace) -> None:
 
     os.makedirs(os.path.dirname(args.output), exist_ok=True)
     write_lock = threading.Lock()
+    telemetry_lock = threading.Lock()
     semaphore = asyncio.Semaphore(args.parallelism)
 
     await asyncio.gather(
         *[
             process_question(
                 q, args.model, path_index, uuids, normed_vectors, embed_client,
-                args.output, write_lock, semaphore,
+                args.output, write_lock, semaphore, telemetry_lock,
             )
             for q in selected
         ]

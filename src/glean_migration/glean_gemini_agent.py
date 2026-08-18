@@ -31,6 +31,7 @@ from google.genai import types
 
 from src.glean_migration.local_backends import CorpusIndex, register_local_backends
 from src.llm.agentic_model import resolve_agentic_model, tool_call_reminder
+from src.llm.telemetry import QuestionTelemetry, append_telemetry, telemetry_path_for
 from src.paths import QUESTIONS_PATH
 from src.scripts.answer_generation.vertex_retrieval import select_questions
 from src.utils.retrieval import append_result, load_existing_question_ids, load_questions
@@ -106,8 +107,10 @@ async def answer_question(
     output: str,
     write_lock: threading.Lock,
     semaphore: asyncio.Semaphore,
+    telemetry_lock: threading.Lock,
 ) -> None:
     qid = question["question_id"]
+    telemetry = QuestionTelemetry(question_id=qid)
     async with semaphore:
         state: dict = {"answer": None, "document_ids": None, "seen": []}
 
@@ -174,6 +177,7 @@ async def answer_question(
                     role="user", parts=[types.Part(text=question["question"])]
                 ),
             ):
+                telemetry.record_event(getattr(event, "usage_metadata", None))
                 if event.content and event.content.parts:
                     for part in event.content.parts:
                         if part.text:
@@ -191,6 +195,7 @@ async def answer_question(
             {"question_id": qid, "answer": answer, "document_ids": doc_ids},
             write_lock,
         )
+        append_telemetry(telemetry_path_for(output), telemetry.finish(), telemetry_lock)
         print(
             f"  {qid} done (submit_answer={state['answer'] is not None}, "
             f"docs={len(doc_ids)})"
@@ -224,11 +229,12 @@ async def main_async(args: argparse.Namespace) -> None:
 
     os.makedirs(os.path.dirname(args.output), exist_ok=True)
     write_lock = threading.Lock()
+    telemetry_lock = threading.Lock()
     semaphore = asyncio.Semaphore(args.parallelism)
 
     await asyncio.gather(
         *[
-            answer_question(q, args.model, args.output, write_lock, semaphore)
+            answer_question(q, args.model, args.output, write_lock, semaphore, telemetry_lock)
             for q in selected
         ]
     )
