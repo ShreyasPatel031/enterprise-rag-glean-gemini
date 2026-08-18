@@ -83,6 +83,16 @@ if [[ -z "${VERTEX_PROJECT:-}" ]]; then
   exit 1
 fi
 
+# src/llm/factory.py defaults LLM_PROVIDER to "openai". Left unset on a
+# Vertex-only setup, both scorers' judges fail on every question, the errors are
+# swallowed, and every cell reports 0% correctness while recall (document-id
+# comparison, no LLM) still looks normal. Fail loudly instead.
+if [[ "${LLM_PROVIDER:-}" != "vertex" ]]; then
+  echo "LLM_PROVIDER must be set to 'vertex' or the eval judge silently scores everything 0%." >&2
+  echo "  export LLM_PROVIDER=vertex" >&2
+  exit 1
+fi
+
 mkdir -p "$OUT_DIR"
 
 slug_for() { echo "${1//gemini-2.5-/}"; }

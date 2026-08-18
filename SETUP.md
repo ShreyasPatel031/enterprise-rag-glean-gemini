@@ -78,14 +78,40 @@ Writes `answer_evaluation/_vertex_cache/{index,uuids,vectors}_confluence_jira_ca
 The agentic harnesses **fail fast** if it is absent rather than silently
 rebuilding it.
 
-## 5. Scorer flag names (they differ between the two scripts)
+## 5. `LLM_PROVIDER` — the silent-zero trap
+
+**Set `LLM_PROVIDER=vertex` before running either scorer.** It defaults to
+`"openai"` in `src/llm/factory.py`, and upstream's `quickstart.md` says
+`export LLM_PROVIDER="openai"`. On a Vertex-only setup with no OpenAI key the
+judge then fails on every question, the eval script swallows the errors, and you
+get a complete-looking results file where:
+
+* `average_correctness_pct` and `average_completeness_pct` are **0.0** for every
+  cell, and
+* `average_recall_pct` / `average_invalid_extra_docs` look completely normal,
+  because they are computed by comparing document ids and never call an LLM.
+
+So the failure does not look like a failure — it looks like a set of systems
+that retrieve well and cannot answer. Verified this happens; it zeroed six cells
+here before being caught.
+
+```bash
+export LLM_PROVIDER=vertex
+export LLM_MODEL_NAME=gemini-2.5-pro   # judge model; this is also the default
+```
+
+Sanity check before trusting a run: score a cell whose numbers you already know
+and confirm it reproduces. A cell that scores 0% correctness while citing
+correct documents is a broken judge, not a weak model.
+
+## 6. Scorer flag names (they differ between the two scripts)
 
 | Script | Answers flag | `--no-correction`? |
 |---|---|---|
 | `metrics_based_eval.py` | `--answers-file` (plural) | yes |
 | `comparative_eval.py` | `--answer-file-1` / `--answer-file-2` (singular) | **no** |
 
-## 6. Run the matrix
+## 7. Run the matrix
 
 ```bash
 export VERTEX_PROJECT=your-project
