@@ -55,6 +55,53 @@ _PARTNER_MODELS = {
 }
 
 
+# --- forced tool_choice: tried and rejected, kept here so it is not retried ---
+#
+# The obvious fix for Llama 4 Maverick's textual-pseudo-tool-call failure is
+# forcing tool_choice="required" (ADK: tool_config.function_calling_config.mode
+# = ANY). Verified live against project-amer-scs-sandbox and disqualified on
+# both ends it would need to help:
+#
+#   * Llama 4 Maverick's Vertex MaaS endpoint rejects it outright:
+#       400 INVALID_ARGUMENT "forced function calling (mode = ANY) is not
+#       supported for this model"
+#     -- so it cannot be applied to the model with the problem.
+#   * Mistral Medium 3's endpoint accepts it, but forcing a tool call on every
+#     turn removes the model's ability to ever decide it is done: in testing
+#     it called `search` on 6+ consecutive turns and never reached
+#     `finish_answer`. Mistral was already 30/30 clean without this, so
+#     applying it would trade a working model for a hung one.
+#
+# Do not re-attempt this without a per-turn stopping mechanism (e.g. force
+# ANY only until the model has called at least one non-search tool, then
+# drop back to AUTO) -- naive blanket forcing is worse than the defect it
+# targets.
+
+
+# Extra instruction text for models observed to emit tool calls as plain
+# text instead of through the structured mechanism (see the rejected
+# forced-tool_choice section above for why the request-level fix doesn't
+# work). Appended to a harness's system instruction, never replacing it.
+_TOOL_CALL_REMINDERS = {
+    "llama-4-maverick": (
+        "\n\nCRITICAL: call tools ONLY through the function-calling mechanism "
+        "your API exposes. Never write a call as plain text, e.g. "
+        '`read_document(doc_id="...")` or inside brackets or code fences -- '
+        "text like that does not execute and produces no result. If you find "
+        "yourself about to type a function name followed by parentheses, stop "
+        "and use a real tool call instead. Never invent, guess, or continue as "
+        "if a tool had returned a result you were not actually given -- always "
+        "wait for the genuine tool response before using its content."
+    ),
+}
+
+
+def tool_call_reminder(model: str) -> str:
+    """Extra instruction text to append for models prone to textual pseudo
+    tool calls. Empty string for every other model."""
+    return _TOOL_CALL_REMINDERS.get(model, "")
+
+
 def resolve_agentic_model(model: str):
     """Turn a --model string into what LlmAgent(model=...) expects.
 
