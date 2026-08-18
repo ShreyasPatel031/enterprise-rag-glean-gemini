@@ -20,6 +20,7 @@ that and drop these files in on top.
 | `src/llm/agentic_model.py` | Routes `--model` through ADK's `LiteLlm` so Mistral/Llama can drive the agentic harnesses; Gemini unchanged |
 | `src/scripts/answer_evaluation/significance.py` | Significance layer over the scored outputs — paired McNemar, exact binomial, method-disagreement check. Needs no corpus or credentials |
 | `src/scripts/answer_evaluation/harness_divergence.py` | Validates a two-harness head-to-head: retrieval overlap, identical-vs-divergent decomposition, noise floor, split-half, exact power |
+| `src/scripts/answer_evaluation/tool_call_integrity.py` | Flags answers where the agent failed to emit a structured tool call (empty citations, chat-template leakage, narrated pseudo tool calls) |
 | `src/scripts/run_model_toolkit_matrix.sh` | Runs the model × toolkit bake-off matrix, smoke-tests partner models, pools the result |
 | `results/` | Scored outputs from the repo's own `metrics_based_eval.py` / `comparative_eval.py` |
 
@@ -162,6 +163,48 @@ Two things only a live run surfaced:
   the real structured call. It recovered every time observed, but a turn that
   does not would yield an answer citing no documents — exactly what the
   script's smoke step checks.
+
+### Tool-call integrity: Llama is not a usable quality datapoint yet
+
+The matrix script's smoke gate caught this on the first live partner-model run.
+**Llama 4 Maverick does not reliably emit structured tool calls, and when it
+fails it fabricates the tool result.** On `qst_0023` (ADK harness) it wrote
+
+```
+[read_document(doc_id="dsid_a2983978...")]<|python_end|><|header_start|>assistant<|header_end|>
+```
+
+as plain *text*, leaking raw chat-template markers, then wrote out document
+content it had never received — with `[Name], [Name]` placeholders where the
+real document had the actual reviewer names that Mistral retrieved correctly on
+the same question. It cited no documents and never called the finish tool.
+
+Smoke rates, 3 questions per cell against the real corpus:
+
+| Cell | Clean |
+|---|---|
+| Mistral Medium 3 × ADK | 3/3 |
+| Mistral Medium 3 × Glean toolkit | 3/3 |
+| Llama 4 Maverick × ADK | 2/3 |
+| Llama 4 Maverick × Glean toolkit | **0/3** |
+
+Llama degrades *further* on Glean's richer tool specs than on the hand-rolled
+ones, consistent with schema complexity being the trigger.
+
+**Why this has to be reported alongside any score.** The failure does not raise.
+The model free-texts, the answer lands in the JSONL, and the scorer prices it as
+a wrong answer — so an integration defect gets read as weak reasoning. Left
+unflagged it would bias a "how do open models compare" conclusion *against* the
+open model, for reasons that have nothing to do with its reasoning.
+
+`tool_call_integrity.py` quantifies this across a run and is wired into the
+matrix before scoring. Mistral Medium 3 is clean on both toolkits, so its cells
+are usable as a genuine comparison; Llama's are not until the tool-call path is
+fixed (likely `tool_choice` forcing or a retry-on-unstructured-output wrapper).
+
+One knock-on: pooling across 4 models to reach a 65/35 detectable effect assumed
+4 *usable* cells. With Llama compromised the usable pool is Flash, Flash-Lite
+and Mistral — roughly 69 decisive picks, detecting ~68/32.
 
 Running any of this for real requires the upstream corpus and a few
 non-obvious environment details — see **[SETUP.md](SETUP.md)**. Most load-bearing
