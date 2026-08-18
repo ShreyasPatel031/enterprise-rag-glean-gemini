@@ -3,3 +3,4 @@ __pycache__/
 .env
 *.json.key
 service-account*.json
+.venv/

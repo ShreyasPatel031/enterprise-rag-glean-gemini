@@ -30,6 +30,7 @@ from typing import Any
 from google.genai import types
 
 from src.glean_migration.local_backends import CorpusIndex, register_local_backends
+from src.llm.agentic_model import resolve_agentic_model
 from src.paths import QUESTIONS_PATH
 from src.scripts.answer_generation.vertex_retrieval import select_questions
 from src.utils.retrieval import append_result, load_existing_question_ids, load_questions
@@ -152,7 +153,7 @@ async def answer_question(
 
         agent = LlmAgent(
             name="glean_toolkit_agent",
-            model=model,
+            model=resolve_agentic_model(model),
             instruction=SYSTEM_INSTRUCTION,
             tools=[*tools, submit_answer],
         )

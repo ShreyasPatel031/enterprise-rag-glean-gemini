@@ -1,0 +1,127 @@
+{
+  "systems": {
+    "a": "results/system_gemini_adk.jsonl",
+    "b": "results/system_glean_toolkit_gemini.jsonl"
+  },
+  "questions_compared": 30,
+  "retrieval_overlap": {
+    "identical_ids": [
+      "qst_0012",
+      "qst_0013",
+      "qst_0023",
+      "qst_0025",
+      "qst_0059",
+      "qst_0076",
+      "qst_0086",
+      "qst_0129",
+      "qst_0135",
+      "qst_0151",
+      "qst_0174",
+      "qst_0198",
+      "qst_0223",
+      "qst_0327",
+      "qst_0341",
+      "qst_0361",
+      "qst_0382",
+      "qst_0388",
+      "qst_0390",
+      "qst_0395",
+      "qst_0402",
+      "qst_0457"
+    ],
+    "divergent_ids": [
+      "qst_0215",
+      "qst_0216",
+      "qst_0244",
+      "qst_0258",
+      "qst_0262",
+      "qst_0282",
+      "qst_0293",
+      "qst_0400"
+    ],
+    "identical_pct": 73.3,
+    "mean_jaccard": 0.794
+  },
+  "decomposition": {
+    "identical_retrieval": {
+      "n": 22,
+      "correct_a": 20,
+      "correct_b": 20,
+      "recall_a": 90.2,
+      "recall_b": 90.2,
+      "preferred_a": 11,
+      "preferred_b": 10,
+      "effectively_equivalent": 6,
+      "decisive_a": 8,
+      "decisive_b": 7
+    },
+    "divergent_retrieval": {
+      "n": 8,
+      "correct_a": 5,
+      "correct_b": 4,
+      "recall_a": 50.0,
+      "recall_b": 56.2,
+      "preferred_a": 3,
+      "preferred_b": 5,
+      "effectively_equivalent": 0,
+      "decisive_a": 3,
+      "decisive_b": 5
+    }
+  },
+  "noise_floor": {
+    "flipped_ids": [
+      "qst_0327",
+      "qst_0341"
+    ],
+    "flip_rate_pct": 9.1
+  },
+  "split_half": {
+    "odd index": {
+      "preferred_a": 5,
+      "preferred_b": 9,
+      "p_value": 0.424,
+      "leans": "GLEAN"
+    },
+    "even index": {
+      "preferred_a": 9,
+      "preferred_b": 6,
+      "p_value": 0.607,
+      "leans": "ADK"
+    },
+    "first half": {
+      "preferred_a": 8,
+      "preferred_b": 7,
+      "p_value": 1.0,
+      "leans": "ADK"
+    },
+    "second half": {
+      "preferred_a": 6,
+      "preferred_b": 8,
+      "p_value": 0.791,
+      "leans": "GLEAN"
+    }
+  },
+  "power": {
+    "decisive_picks_now": 23,
+    "informative_fraction": 0.267,
+    "min_detectable_rate_now": 0.7900000000000003,
+    "scaling": {
+      "current: 1 model x 2 toolkits, n=30": {
+        "decisive_picks": 23,
+        "detectable_rate": 0.7900000000000003
+      },
+      "2 models x 2 toolkits, n=30": {
+        "decisive_picks": 46,
+        "detectable_rate": 0.7200000000000002
+      },
+      "4 models x 2 toolkits, n=30": {
+        "decisive_picks": 92,
+        "detectable_rate": 0.6500000000000001
+      },
+      "4 models x 2 toolkits, n=100": {
+        "decisive_picks": 307,
+        "detectable_rate": 0.5850000000000001
+      }
+    }
+  }
+}

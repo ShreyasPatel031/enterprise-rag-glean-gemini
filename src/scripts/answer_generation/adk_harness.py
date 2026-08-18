@@ -27,6 +27,7 @@ import numpy as np
 from google import genai
 from google.genai import types
 
+from src.llm.agentic_model import resolve_agentic_model
 from src.scripts.answer_generation.vertex_retrieval import select_questions
 from src.paths import QUESTIONS_PATH
 from src.utils.document_content import extract_document_content
@@ -152,7 +153,7 @@ async def process_question(
         ]
         agent = LlmAgent(
             name="enterprise_search_agent",
-            model=model,
+            model=resolve_agentic_model(model),
             instruction=SYSTEM_INSTRUCTION,
             tools=tools,
         )

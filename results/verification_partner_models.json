@@ -1,0 +1,46 @@
+{
+  "verified_at": "2026-08-18",
+  "vertex_project": "project-amer-scs-sandbox",
+  "purpose": "Confirm Mistral Medium 3 and Llama 4 Maverick can drive both agentic harnesses, which was previously untested. Gemini 2.5 Flash included as a control.",
+  "toolkit_versions": {
+    "glean-agent-toolkit": "0.8.0",
+    "note": "repo's register_backend seam (glean.agent_toolkit.tools._transport) and tool names (glean_search, glean_read_document) match this version"
+  },
+  "extra_dependency_found": {
+    "package": "google-cloud-aiplatform>=1.38",
+    "why": "litellm's Vertex partner route imports `vertexai`; without it every Mistral/Llama call fails with a misleading BadRequestError rather than an import error"
+  },
+  "raw_endpoint_tool_calling": {
+    "mistral-medium-3": {
+      "endpoint": "europe-west4 publishers/mistralai/models/mistral-medium-3:rawPredict",
+      "http_status": 200,
+      "finish_reason": "tool_calls",
+      "tool_call": "search({\"query\": \"VPN firmware bug\"})"
+    },
+    "meta/llama-4-maverick-17b-128e-instruct-maas": {
+      "endpoint": "us-east5 endpoints/openapi/chat/completions",
+      "http_status": 200,
+      "finish_reason": "tool_calls",
+      "tool_call": "search({\"query\":\"VPN firmware bug\"})"
+    }
+  },
+  "adk_loop_hand_rolled_tools": {
+    "gemini-2.5-flash": "PASS - search then finish_answer",
+    "mistral-medium-3": "PASS - search then finish_answer",
+    "llama-4-maverick": "PASS - search then finish_answer"
+  },
+  "adk_loop_glean_real_tool_specs": {
+    "description": "Glean's own tool specs via as_adk_tool(), canned backend behind glean_search / glean_read_document, so the toolkit's real schemas and ToolResult envelope are exercised unchanged",
+    "gemini-2.5-flash": "PASS - glean_search -> glean_read_document -> submit_answer",
+    "mistral-medium-3": "PASS - glean_search -> glean_read_document -> submit_answer",
+    "llama-4-maverick": "PASS - glean_search -> glean_read_document -> submit_answer"
+  },
+  "known_quirks": {
+    "llama-4-maverick": "Intermittently emits a textual pseudo tool call containing raw chat-template markers (e.g. '<|header_start|>assistant<|header_end|>\\n\\nglean_read_document(document_id=\"dsid_001\")') before issuing the real structured call. Recovered in every observed case, but answers may carry template noise, and a non-recovering turn would yield an answer with no document_ids. The matrix script's smoke step checks for exactly that."
+  },
+  "still_not_verified": [
+    "A full 30-question run: needs the EnterpriseRAG-Bench corpus and the embedding cache, neither of which is present in this repo (it is a partial extract).",
+    "Multi-turn behaviour over hard questions where the agent must re-search several times.",
+    "Whether either partner model's answer quality is comparable - that is what the matrix run measures."
+  ]
+}
