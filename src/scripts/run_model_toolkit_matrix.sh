@@ -158,10 +158,9 @@ for model in "${MODELS[@]}"; do
 done
 
 # --- per-model head-to-head --------------------------------------------------
-# NOTE: comparative_eval.py is an upstream script, not vendored here, so the
-# two --answers-file-N flag names are inferred from the shape of its output.
-# Check them against your EnterpriseRAG-Bench checkout before the first run;
-# metrics_based_eval's flags above are confirmed from the README.
+# Flags verified against the upstream scripts: comparative_eval takes
+# --answer-file-1/-2 (singular "answer") and has no --no-correction;
+# metrics_based_eval takes --answers-file (plural) and does have it.
 for model in "${MODELS[@]}"; do
   slug=$(slug_for "$model")
   comparative="$OUT_DIR/results_comparative_adk_vs_gleantoolkit_${slug}.json"
@@ -170,10 +169,11 @@ for model in "${MODELS[@]}"; do
   fi
   echo "== compare: adk vs gleantoolkit on $model"
   $PY -m src.scripts.answer_evaluation.comparative_eval \
-    --answers-file-1 "$OUT_DIR/system_adk_${slug}.jsonl" \
-    --answers-file-2 "$OUT_DIR/system_gleantoolkit_${slug}.jsonl" \
+    --answer-file-1 "$OUT_DIR/system_adk_${slug}.jsonl" \
+    --answer-file-2 "$OUT_DIR/system_gleantoolkit_${slug}.jsonl" \
     --results-file "$comparative" \
-    --no-correction --parallelism "$PARALLELISM"
+    --updated-questions-file "$OUT_DIR/questions_updated_${slug}.jsonl" \
+    --parallelism "$PARALLELISM"
 done
 
 # --- per-model validation ----------------------------------------------------

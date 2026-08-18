@@ -163,11 +163,11 @@ Two things only a live run surfaced:
   does not would yield an answer citing no documents — exactly what the
   script's smoke step checks.
 
-**Still unverified: a full 30-question run.** That needs the
-EnterpriseRAG-Bench corpus plus the embedding cache. This repo is a partial
-extract and does not vendor `src/llm/interface.py`, `src/paths.py`,
-`src/utils/*`, or `src/prompts/*`, which the harnesses import — clone upstream
-and drop these files on top first.
+Running any of this for real requires the upstream corpus and a few
+non-obvious environment details — see **[SETUP.md](SETUP.md)**. Most load-bearing
+of them: `google-cloud-aiplatform>=1.38` is required for the partner models and
+is *not* in upstream's requirements, and without it every Mistral/Llama call
+fails with a misleading `BadRequestError` rather than an import error.
 
 ## What this does and does not show
 
