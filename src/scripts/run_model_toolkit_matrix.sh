@@ -59,6 +59,11 @@ SOURCE_TYPES="confluence jira"
 QUESTION_LIMIT=30
 CORPUS_CAP=800
 PARALLELISM=4
+# Partner MaaS endpoints have far tighter quota than Gemini: mistral on
+# europe-west4 and llama on us-east5 return 429s at PARALLELISM=4, and the
+# harnesses swallow the exception and write a blank-answer row, which the
+# scorer then counts against the model. Run those serially.
+PARTNER_PARALLELISM=1
 SMOKE_LIMIT=3
 
 PY="${PYTHON:-python}"
@@ -88,6 +93,10 @@ is_partner_model() {
     [[ "$m" == "$needle" ]] && return 0
   done
   return 1
+}
+
+parallelism_for() {
+  if is_partner_model "$1"; then echo "$PARTNER_PARALLELISM"; else echo "$PARALLELISM"; fi
 }
 
 # --- smoke test: partner models only, few questions, before the real run -----
@@ -129,16 +138,31 @@ for model in "${MODELS[@]}"; do
     if [[ -s "$answers" ]]; then
       echo "== skip (exists): $answers"; continue
     fi
-    echo "== generate: $toolkit x $model -> $answers"
+    par=$(parallelism_for "$model")
+    echo "== generate: $toolkit x $model (parallelism $par) -> $answers"
+    # --resume so a re-invocation after a rate-limit repair refills only the
+    # dropped questions instead of regenerating the whole cell.
     $PY -m "${TOOLKITS[$toolkit]}" \
       --source-types $SOURCE_TYPES \
       --question-limit "$QUESTION_LIMIT" \
       --corpus-cap "$CORPUS_CAP" \
       --model "$model" \
-      --parallelism "$PARALLELISM" \
+      --parallelism "$par" \
+      --resume \
       --output "$answers"
   done
 done
+
+# --- triage: drop rows that failed for infrastructure reasons ----------------
+# A rate-limited or timed-out question lands as a blank-answer row rather than
+# an error. Scoring it would penalise the model for a quota problem. Dropping
+# it here means the loop above (with --resume) refills it on the next pass.
+echo
+echo "============ answer row triage ============"
+$PY -m src.scripts.answer_evaluation.repair_failed_answers \
+  "$OUT_DIR"/system_*.jsonl || true
+echo "If rows were listed above, re-run this script to refill them before"
+echo "trusting the scores; --resume makes that cheap."
 
 # --- tool-call integrity over the full answer files ----------------------------
 # A model that fails to emit a structured tool call does not error -- it
