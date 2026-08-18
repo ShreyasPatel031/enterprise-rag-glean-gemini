@@ -1,0 +1,744 @@
+{
+  "system_1": "answer_evaluation/system_gemini_flash.jsonl",
+  "system_2": "answer_evaluation/system_llama4_maverick.jsonl",
+  "updated_question_file": "answer_evaluation/questions_updated_comparative.jsonl",
+  "aggregate_stats": {
+    "total_questions": 30,
+    "skipped_rows": 0,
+    "completed_questions": 30,
+    "num_corrected_questions": 0,
+    "system_1_preferred_pct": 63.33,
+    "system_2_preferred_pct": 36.67,
+    "system_1_strongly_preferred_pct": 46.67,
+    "system_2_strongly_preferred_pct": 23.33,
+    "tie_pct": 30.0,
+    "answer_set_1": {
+      "average_completeness_pct": 88.49,
+      "average_recall_pct": 91.67,
+      "average_extra_docs": 8.9
+    },
+    "answer_set_2": {
+      "average_completeness_pct": 80.79,
+      "average_recall_pct": 91.67,
+      "average_extra_docs": 8.9
+    }
+  },
+  "question_type_stats": {
+    "basic": {
+      "completed_questions": 11,
+      "num_corrected_questions": 0,
+      "system_1_preferred_pct": 72.73,
+      "system_2_preferred_pct": 27.27,
+      "system_1_strongly_preferred_pct": 36.36,
+      "system_2_strongly_preferred_pct": 9.09,
+      "tie_pct": 54.55,
+      "answer_set_1": {
+        "average_completeness_pct": 95.0,
+        "average_recall_pct": 100.0,
+        "average_extra_docs": 9.0
+      },
+      "answer_set_2": {
+        "average_completeness_pct": 82.27,
+        "average_recall_pct": 100.0,
+        "average_extra_docs": 9.0
+      }
+    },
+    "semantic": {
+      "completed_questions": 9,
+      "num_corrected_questions": 0,
+      "system_1_preferred_pct": 66.67,
+      "system_2_preferred_pct": 33.33,
+      "system_1_strongly_preferred_pct": 55.56,
+      "system_2_strongly_preferred_pct": 22.22,
+      "tie_pct": 22.22,
+      "answer_set_1": {
+        "average_completeness_pct": 73.89,
+        "average_recall_pct": 77.78,
+        "average_extra_docs": 9.22
+      },
+      "answer_set_2": {
+        "average_completeness_pct": 66.48,
+        "average_recall_pct": 77.78,
+        "average_extra_docs": 9.22
+      }
+    },
+    "intra_document_reasoning": {
+      "completed_questions": 1,
+      "num_corrected_questions": 0,
+      "system_1_preferred_pct": 0.0,
+      "system_2_preferred_pct": 100.0,
+      "system_1_strongly_preferred_pct": 0.0,
+      "system_2_strongly_preferred_pct": 100.0,
+      "tie_pct": 0.0,
+      "answer_set_1": {
+        "average_completeness_pct": 100.0,
+        "average_recall_pct": 100.0,
+        "average_extra_docs": 9.0
+      },
+      "answer_set_2": {
+        "average_completeness_pct": 100.0,
+        "average_recall_pct": 100.0,
+        "average_extra_docs": 9.0
+      }
+    },
+    "project_related": {
+      "completed_questions": 2,
+      "num_corrected_questions": 0,
+      "system_1_preferred_pct": 50.0,
+      "system_2_preferred_pct": 50.0,
+      "system_1_strongly_preferred_pct": 50.0,
+      "system_2_strongly_preferred_pct": 50.0,
+      "tie_pct": 0.0,
+      "answer_set_1": {
+        "average_completeness_pct": 90.45,
+        "average_recall_pct": 75.0,
+        "average_extra_docs": 8.0
+      },
+      "answer_set_2": {
+        "average_completeness_pct": 85.91,
+        "average_recall_pct": 75.0,
+        "average_extra_docs": 8.0
+      }
+    },
+    "constrained": {
+      "completed_questions": 6,
+      "num_corrected_questions": 0,
+      "system_1_preferred_pct": 50.0,
+      "system_2_preferred_pct": 50.0,
+      "system_1_strongly_preferred_pct": 50.0,
+      "system_2_strongly_preferred_pct": 33.33,
+      "tie_pct": 16.67,
+      "answer_set_1": {
+        "average_completeness_pct": 93.95,
+        "average_recall_pct": 100.0,
+        "average_extra_docs": 8.5
+      },
+      "answer_set_2": {
+        "average_completeness_pct": 95.62,
+        "average_recall_pct": 100.0,
+        "average_extra_docs": 8.5
+      }
+    },
+    "miscellaneous": {
+      "completed_questions": 1,
+      "num_corrected_questions": 0,
+      "system_1_preferred_pct": 100.0,
+      "system_2_preferred_pct": 0.0,
+      "system_1_strongly_preferred_pct": 100.0,
+      "system_2_strongly_preferred_pct": 0.0,
+      "tie_pct": 0.0,
+      "answer_set_1": {
+        "average_completeness_pct": 100.0,
+        "average_recall_pct": 100.0,
+        "average_extra_docs": 9.0
+      },
+      "answer_set_2": {
+        "average_completeness_pct": 75.0,
+        "average_recall_pct": 100.0,
+        "average_extra_docs": 9.0
+      }
+    }
+  },
+  "questions": [
+    {
+      "question_id": "qst_0012",
+      "corrected": false,
+      "question_type": "basic",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Answer 1 is more complete. It includes the final part of the causal chain from the source document, which explicitly links the technical root cause to the user-facing symptoms mentioned in the query (\"routing blackholes and rekeys\"). Answer 2 omits this final, helpful piece of information."
+      },
+      "answer_set_1": {
+        "completeness_pct": 75.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 75.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0013",
+      "corrected": false,
+      "question_type": "basic",
+      "comparison": {
+        "preferred_system": "2",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly identify the two-phase rotation process. However, System 1 is more accurate in its description of the rollback procedures. It correctly separates the immediate actions from the actions taken if problems persist for more than 10 minutes, and accurately pairs the triggers with their corresponding actions as described in the source document. System 2 conflates these steps, incorrectly stating that pull authentication failures trigger a rollback after persisting for 10 minutes, when the document specifies an immediate action for that trigger."
+      },
+      "answer_set_1": {
+        "completeness_pct": 90.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0023",
+      "corrected": false,
+      "question_type": "basic",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": true,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly and completely extract the list of required reviewers from the provided document. The only difference between the two answers is formatting, with Answer 2 providing a slightly more readable bulleted list and an introductory sentence. As the informational content is identical, the answers are effectively equivalent."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0025",
+      "corrected": false,
+      "question_type": "basic",
+      "comparison": {
+        "preferred_system": "2",
+        "effectively_equivalent": true,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers are correct and are derived from the same sentence in Document 1. The only difference is the inclusion of the word \"sustained\" in Answer 2. This word is implied by the phrase \"for 10 minutes\" in the context of an alerting threshold, making the two answers convey the exact same information."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 50.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0059",
+      "corrected": false,
+      "question_type": "basic",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": true,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly identify the time window from the source document. The only difference is that Answer 2 presents the information in a complete sentence, which is a stylistic difference. They are effectively equivalent as they provide the same core information."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 0.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0076",
+      "corrected": false,
+      "question_type": "basic",
+      "comparison": {
+        "preferred_system": "2",
+        "effectively_equivalent": true,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers are fully correct and derive their information from the same document. They accurately describe the reason for the 403 error and the specific type mismatch. Answer 2 is marginally more detailed by explicitly stating the type changed *from* string *to* integer, but the core information conveyed is the same. Therefore, the answers are effectively equivalent."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0086",
+      "corrected": false,
+      "question_type": "basic",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly identify the root cause from the provided document. Answer 2 is marginally better as it provides a more specific technical explanation for the failure (the kext attempts to register a deprecated network filter not supported on arm64e) and includes the relevant detail that the kext was not notarized for Apple Silicon. Answer 1 is also excellent but uses a slightly more generic description of the failure from the logs (\"attempted unsupported operations\")."
+      },
+      "answer_set_1": {
+        "completeness_pct": 80.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 80.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0129",
+      "corrected": false,
+      "question_type": "basic",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": true,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers provide the exact same correct information, which is found in Document 1. The minor difference in the introductory wording is stylistic and does not change the meaning or usefulness of the answer."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0135",
+      "corrected": false,
+      "question_type": "basic",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": true,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly and completely extract the five-step mitigation plan directly from the 'resolution' section of Document 1, which is the gold document for this specific query. The information presented is identical, with only minor stylistic differences in phrasing and the use of parentheses for clarification. Therefore, the two answers are effectively equivalent."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0151",
+      "corrected": false,
+      "question_type": "basic",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Answer 1 is more comprehensive. It includes specific details from the document that are omitted in Answer 2, such as the date of the policy update, the path of the sudoers file, the full path of the executable, and the purpose for which the command needed sudo privileges. These details provide a more complete explanation of the root cause."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0174",
+      "corrected": false,
+      "question_type": "basic",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly list the required fields from Document 1. However, Answer 2 also includes the detail that the 'result' field has possible values of 'pass|fail', which is explicitly mentioned in the document and provides more complete information."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0198",
+      "corrected": false,
+      "question_type": "semantic",
+      "comparison": {
+        "preferred_system": "2",
+        "effectively_equivalent": true,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly identify the change made based on the provided document. Answer 2 is marginally better as it includes the quantitative impact of the change (reduction from ~3% to ~0.1%), which is highly relevant context. However, the core information conveyed is the same, making them effectively equivalent."
+      },
+      "answer_set_1": {
+        "completeness_pct": 66.67,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0215",
+      "corrected": false,
+      "question_type": "semantic",
+      "comparison": {
+        "preferred_system": "2",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly identify the root cause from the provided document. However, Answer 1 is more complete as it also includes the server-side mitigation that was developed and tested to fix the issue. This provides a fuller picture of the problem and its resolution."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0216",
+      "corrected": false,
+      "question_type": "semantic",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Candidate Answer 1 is more complete and accurate. It correctly identifies three distinct phases of the update rhythm found in the documents: an initial update within 10 minutes, an ongoing cadence of 30-60 minutes, and the conditions for shortening the interval. Candidate Answer 2 omits the initial update and gives a less precise ongoing cadence of \"every 30 minutes\" instead of the 30-60 minute range specified in the gold document (Document 6)."
+      },
+      "answer_set_1": {
+        "completeness_pct": 80.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 40.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0223",
+      "corrected": false,
+      "question_type": "semantic",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly identify the primary cause of the failure, which was a conditional mismatch on `resource.name`. However, Answer 2 is more complete as it also includes a second, related cause mentioned in the document (a missing 'broker_id' attribute) and it also confirms the impact details from the query (duration of ~36 hours and the affected regions), making it a more comprehensive and superior answer."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 80.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0244",
+      "corrected": false,
+      "question_type": "semantic",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": true,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly identify the root cause from Document 1: a token issuer mismatch after an SSO provider URL change. Answer 2 is slightly better because it includes the critical technical detail that the RBAC grants are indexed by `(principal_id, issuer)`, which more precisely explains *why* the issuer mismatch caused the permission grant to fail. This directly addresses the \"what caused\" part of the query in more depth."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0258",
+      "corrected": false,
+      "question_type": "semantic",
+      "comparison": {
+        "preferred_system": "2",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Neither system retrieved the gold document that perfectly answers the query. System 1 hallucinates an answer by confidently stating the cause from a related but different incident (Document 2) as the answer to the query. System 2 correctly identifies that the provided documents do not contain the precise answer, summarizes the most relevant (but still incorrect) documents, and explains the discrepancies. System 2 is far less misleading and therefore a much better answer."
+      },
+      "answer_set_1": {
+        "completeness_pct": 33.33,
+        "document_recall_pct": 0.0,
+        "invalid_extra_docs": 10
+      },
+      "answer_set_2": {
+        "completeness_pct": 33.33,
+        "document_recall_pct": 0.0,
+        "invalid_extra_docs": 10
+      }
+    },
+    {
+      "question_id": "qst_0262",
+      "corrected": false,
+      "question_type": "semantic",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Answer 1 provides a far more detailed and comprehensive solution by synthesizing information from across the entire document set. It includes specific technical details like signature algorithms (Ed25519), key rotation logs, per-event signatures, and the exact components of an HSM attestation, all of which are found in the documents and directly relevant to the highly specific query. Answer 2 bases its response almost entirely on a single document (Doc 2), resulting in a correct but much less detailed and complete answer that misses many of the advanced capabilities described in other documents."
+      },
+      "answer_set_1": {
+        "completeness_pct": 60.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 70.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0282",
+      "corrected": false,
+      "question_type": "semantic",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Answer 2 correctly identifies the root cause as described in the gold document (Document 8). The query specifically mentions a \"traffic surge,\" which aligns perfectly with the \"peak traffic window\" and \"edge rate-shedding\" policy described in Document 8 and summarized by Answer 2. Answer 1 incorrectly describes a different incident from Document 10, which was caused by a \"token rotation\" during a \"staged rollout,\" not a traffic surge."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 50.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0293",
+      "corrected": false,
+      "question_type": "semantic",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: System 2 provides a more comprehensive and synthesized answer. It correctly identifies the shutdown process and default lifetimes from multiple documents. Crucially, for the \"advance warning\" part of the query, System 2 finds relevant examples from the documents (e.g., the Slack modal for channel deprecation and the Jira task for bot-admin roles), whereas System 1 concludes that no information is available. While these examples are not for a full sandbox shutdown, they are the best available information in the provided documents and directly address a key part of the user's query, making System 2's answer more helpful."
+      },
+      "answer_set_1": {
+        "completeness_pct": 25.0,
+        "document_recall_pct": 0.0,
+        "invalid_extra_docs": 10
+      },
+      "answer_set_2": {
+        "completeness_pct": 25.0,
+        "document_recall_pct": 0.0,
+        "invalid_extra_docs": 10
+      }
+    },
+    {
+      "question_id": "qst_0327",
+      "corrected": false,
+      "question_type": "intra_document_reasoning",
+      "comparison": {
+        "preferred_system": "2",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly identify the two unit primitives and the Confluence file location. However, System 1 is slightly more complete because it also provides the definitions for the two primitives (TGU and EU), which is directly relevant and helpful information found in the source document."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0341",
+      "corrected": false,
+      "question_type": "project_related",
+      "comparison": {
+        "preferred_system": "2",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers are very strong and pull the correct information from the document. However, Answer 1 is slightly better because it more accurately describes the policy exception. The document states that a \"guarded exception\" was approved, which included the automated rollback guardrails. Answer 1 correctly includes these guardrails as part of the exception. Answer 2 separates the guardrails from the exception, listing them as part of the verification process, which is a less precise representation of the action taken."
+      },
+      "answer_set_1": {
+        "completeness_pct": 90.0,
+        "document_recall_pct": 50.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 90.0,
+        "document_recall_pct": 50.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0361",
+      "corrected": false,
+      "question_type": "project_related",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Candidate Answer 2 is significantly more detailed and comprehensive. It provides specific examples of platform-caused failures (e.g., `upstream_reset`, `gateway_error`) from the documents, explicitly states the two-part condition for classifying a client abort, and gives a more thorough, itemized breakdown of the customer-facing support response. Candidate Answer 1 is correct but more of a high-level summary."
+      },
+      "answer_set_1": {
+        "completeness_pct": 90.91,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 7
+      },
+      "answer_set_2": {
+        "completeness_pct": 81.82,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 7
+      }
+    },
+    {
+      "question_id": "qst_0382",
+      "corrected": false,
+      "question_type": "constrained",
+      "comparison": {
+        "preferred_system": "2",
+        "effectively_equivalent": true,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers are identical in content, correctly extracting the root cause, mitigation, and follow-up steps from the provided postmortem document. The differences are purely stylistic, making them effectively equivalent."
+      },
+      "answer_set_1": {
+        "completeness_pct": 92.86,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 92.86,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0388",
+      "corrected": false,
+      "question_type": "constrained",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly identify the root cause of the issue based on the provided document. However, Answer 2 provides a more detailed and complete description of the server-side fix, including the specific Pull Request number (PR 2147), the duration of the grace window (250ms), and the specific modification to the flush path. These details are all supported by the document and make the answer more comprehensive."
+      },
+      "answer_set_1": {
+        "completeness_pct": 90.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0390",
+      "corrected": false,
+      "question_type": "constrained",
+      "comparison": {
+        "preferred_system": "2",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly identify the mitigations and RCA artifacts from the provided documents. Answer 1 is slightly better because it includes more specific details from the source documents, such as the full `tcpdump` command and the reason for restarting the proxy pods. Answer 2 omits these useful details."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 8
+      },
+      "answer_set_2": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 8
+      }
+    },
+    {
+      "question_id": "qst_0395",
+      "corrected": false,
+      "question_type": "constrained",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly identify the root cause and the fix. However, Answer 1 is more comprehensive, providing additional accurate details from the source document, such as the fact that the initial callback used a chunked gzip path while the retry used a different, non-chunked encoding. This extra detail provides a more complete explanation of the incident."
+      },
+      "answer_set_1": {
+        "completeness_pct": 87.5,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 87.5,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    },
+    {
+      "question_id": "qst_0400",
+      "corrected": false,
+      "question_type": "constrained",
+      "comparison": {
+        "preferred_system": "2",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: System 2 is better because it includes the critical detail from Document 1 that the `tenant_id` field must be hashed. This is an important privacy and security requirement mentioned in the document, which System 1 omits."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 8
+      },
+      "answer_set_2": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 8
+      }
+    },
+    {
+      "question_id": "qst_0402",
+      "corrected": false,
+      "question_type": "constrained",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly identify the cause and the resolution. However, System 1 provides a more complete list of artifacts to collect, which is a specific part of the query. System 1's list includes \"Environment details\" (versions, Kubernetes distribution, etc.), which is explicitly called out as a required item to collect in Document 1. System 2's list omits this category of information, making its answer less complete."
+      },
+      "answer_set_1": {
+        "completeness_pct": 93.33,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 8
+      },
+      "answer_set_2": {
+        "completeness_pct": 93.33,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 8
+      }
+    },
+    {
+      "question_id": "qst_0457",
+      "corrected": false,
+      "question_type": "miscellaneous",
+      "comparison": {
+        "preferred_system": "1",
+        "effectively_equivalent": false,
+        "reason": "Note that the LLM sees the two systems in a random order so the referenced System 1/2 in the provided reasoning may be out of order. LLM provided reasoning: Both answers correctly identify the need for approval for items over 30\" and the correct contact email. However, Answer 2 provides a more complete list of the details to include in the request, drawing from the \"Quick Checklist\" in Document 1, which is explicitly provided for submitters."
+      },
+      "answer_set_1": {
+        "completeness_pct": 100.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      },
+      "answer_set_2": {
+        "completeness_pct": 75.0,
+        "document_recall_pct": 100.0,
+        "invalid_extra_docs": 9
+      }
+    }
+  ]
+}

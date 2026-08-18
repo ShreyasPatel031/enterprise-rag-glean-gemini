@@ -1,0 +1,365 @@
+{
+  "aggregate_stats": {
+    "total_questions": 30,
+    "completed_questions": 30,
+    "skipped_rows": 0,
+    "num_corrected_questions": 0,
+    "average_correctness_pct": 93.33,
+    "average_completeness_pct": 80.08,
+    "combined_correctness_completeness_score": 77.58,
+    "average_recall_pct": 91.67,
+    "average_invalid_extra_docs": 8.9
+  },
+  "question_type_stats": {
+    "basic": {
+      "count": 11,
+      "average_correctness_pct": 100.0,
+      "average_completeness_pct": 84.39,
+      "combined_correctness_completeness_score": 84.39,
+      "average_recall_pct": 100.0,
+      "average_invalid_extra_docs": 9.0
+    },
+    "semantic": {
+      "count": 9,
+      "average_correctness_pct": 88.89,
+      "average_completeness_pct": 72.59,
+      "combined_correctness_completeness_score": 69.81,
+      "average_recall_pct": 77.78,
+      "average_invalid_extra_docs": 9.22
+    },
+    "intra_document_reasoning": {
+      "count": 1,
+      "average_correctness_pct": 0.0,
+      "average_completeness_pct": 50.0,
+      "combined_correctness_completeness_score": 0.0,
+      "average_recall_pct": 100.0,
+      "average_invalid_extra_docs": 9.0
+    },
+    "project_related": {
+      "count": 2,
+      "average_correctness_pct": 100.0,
+      "average_completeness_pct": 85.91,
+      "combined_correctness_completeness_score": 85.91,
+      "average_recall_pct": 75.0,
+      "average_invalid_extra_docs": 8.0
+    },
+    "constrained": {
+      "count": 6,
+      "average_correctness_pct": 100.0,
+      "average_completeness_pct": 87.31,
+      "combined_correctness_completeness_score": 87.31,
+      "average_recall_pct": 100.0,
+      "average_invalid_extra_docs": 8.5
+    },
+    "miscellaneous": {
+      "count": 1,
+      "average_correctness_pct": 100.0,
+      "average_completeness_pct": 75.0,
+      "combined_correctness_completeness_score": 75.0,
+      "average_recall_pct": 100.0,
+      "average_invalid_extra_docs": 9.0
+    }
+  },
+  "questions": [
+    {
+      "question_id": "qst_0012",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the root cause as a specific firmware bug (1.2.3) causing incorrect proxy-ARP behavior under high multicast load, which aligns with the core information in the gold answer.",
+      "completeness_pct": 100.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0013",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer accurately describes the two-stage process, cutover, and rollback plan, including matching all specific quantities like timeframes, and adds permissible, non-conflicting details about the incident response.",
+      "completeness_pct": 90.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0023",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies all the same review teams and individuals as the gold answer, providing additional helpful context about their specific roles.",
+      "completeness_pct": 100.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0025",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the same latency threshold (>2000ms) and sustained duration (10 minutes) as the gold answer.",
+      "completeness_pct": 0.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0059",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer provides the correct time window which matches the gold answer.",
+      "completeness_pct": 100.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0076",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the same core issue as the gold answer: a type mismatch where integer group IDs from Okta are not matching the expected string IDs in the authentication service, leading to 403 errors.",
+      "completeness_pct": 83.33,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0086",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the same root cause as the gold answer, which is an incompatible legacy VPN kernel extension interfering with the network stack on Apple Silicon hardware, thus preventing MDM enrollment.",
+      "completeness_pct": 80.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0129",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer accurately provides the core technical solution, including the specific variables and their values, which matches the gold answer.",
+      "completeness_pct": 100.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0135",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer provides all the same core steps, quantities, and commands as the gold answer for the rollback plan, with the only difference being an acceptable additional detail about engineering follow-up.",
+      "completeness_pct": 100.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0151",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the root cause as the sudo policy change removing permissions for the `ci-agent` group, which is the same core information provided in the gold answer.",
+      "completeness_pct": 75.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0174",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer provides the exact same list of required fields as the gold answer.",
+      "completeness_pct": 100.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0198",
+      "corrected": false,
+      "question_type": "semantic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the core change of injecting an explicit SSE terminal event (`event: end` / `data: [DONE]`) at the gateway and adds non-conflicting quantitative details about the improvement.",
+      "completeness_pct": 100.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0215",
+      "corrected": false,
+      "question_type": "semantic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the Apple HTTP proxy, the coalescing of an idle-probe FIN with a TCP migration, and the premature closure by the edge server as the root cause, which perfectly aligns with the technical explanation in the gold answer.",
+      "completeness_pct": 100.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0216",
+      "corrected": false,
+      "question_type": "semantic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer provides a regular update cadence of 30 minutes, which is within the gold answer's 30-60 minute range, and all other specified time intervals match.",
+      "completeness_pct": 80.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0223",
+      "corrected": false,
+      "question_type": "semantic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the same core technical reasons for the failure as the gold answer, namely the new IAM conditional rules requiring a specific `resource.name` and a `broker_id` attribute, which were not met by the AWS-to-GCP federation bridge.",
+      "completeness_pct": 80.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0244",
+      "corrected": false,
+      "question_type": "semantic",
+      "answer_correct": true,
+      "correctness_reasoning": "Both answers correctly identify the root cause as a token issuer mismatch following an Okta domain swap, which caused the RBAC system to fail grant lookups despite the UI showing success.",
+      "completeness_pct": 100.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0258",
+      "corrected": false,
+      "question_type": "semantic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the core triggers (long-lived chat streams and large embedding batch) and outcomes (gateway failures, cache pressure, connection churn) mentioned in both the query and the gold answer, providing a consistent, albeit differently detailed, explanation of the event.",
+      "completeness_pct": 33.33,
+      "document_recall_pct": 0.0,
+      "invalid_extra_docs": 10
+    },
+    {
+      "question_id": "qst_0262",
+      "corrected": false,
+      "question_type": "semantic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer confirms that a tamper-evident package can be created and describes the key technical components required (HSM signing, manifest, verification steps, etc.), which aligns with the core requirements of the query and the information in the gold answer.",
+      "completeness_pct": 60.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0282",
+      "corrected": false,
+      "question_type": "semantic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the core cause\u2014a rate-shedding policy that lacked an exemption for pinned sessions\u2014and its consequence of deprioritizing those routes, which matches the gold answer's explanation.",
+      "completeness_pct": 75.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0293",
+      "corrected": false,
+      "question_type": "semantic",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer provides conflicting information about the sandbox's lifetime (a specific date vs. 14 days), the shutdown process, and the advance warning (none vs. 72 hours).",
+      "completeness_pct": 25.0,
+      "document_recall_pct": 0.0,
+      "invalid_extra_docs": 10
+    },
+    {
+      "question_id": "qst_0327",
+      "corrected": false,
+      "question_type": "intra_document_reasoning",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer is missing the location of the Confluence file, which was a core part of the query.",
+      "completeness_pct": 50.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0341",
+      "corrected": false,
+      "question_type": "project_related",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the cause of throttling (admission control), the specific policy exception (increased burst multiplier for PROXIMA-ENT-014 in us-east for 14 days), and the verification method (monitoring latency and shed rate), aligning with the core information and specific quantities in the gold answer.",
+      "completeness_pct": 90.0,
+      "document_recall_pct": 50.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0361",
+      "corrected": false,
+      "question_type": "project_related",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly summarizes the classification rules for disconnects, how they apply to SLO/SLA accounting, and the core message for support, aligning with all key aspects of the gold answer.",
+      "completeness_pct": 81.82,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 7
+    },
+    {
+      "question_id": "qst_0382",
+      "corrected": false,
+      "question_type": "constrained",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the same root cause, mitigation steps, and follow-up actions as the gold answer.",
+      "completeness_pct": 92.86,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0388",
+      "corrected": false,
+      "question_type": "constrained",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the root cause as a race condition and the fix as PR 2147, which involved making the terminal event atomic and adding a grace window, thereby aligning with the core information in the gold answer.",
+      "completeness_pct": 90.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0390",
+      "corrected": false,
+      "question_type": "constrained",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the core mitigations (replica scaling, pod restarts, and widening the ephemeral port range) and provides valid, relevant RCA artifacts that align with the spirit of the gold answer, even though some specifics differ.",
+      "completeness_pct": 84.62,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 8
+    },
+    {
+      "question_id": "qst_0395",
+      "corrected": false,
+      "question_type": "constrained",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the root cause as signing happening after compression and the fix as moving the signing step to before compression, which aligns with the core information in the gold answer.",
+      "completeness_pct": 87.5,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    },
+    {
+      "question_id": "qst_0400",
+      "corrected": false,
+      "question_type": "constrained",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer provides the exact same list of required telemetry fields and run-lifecycle events as the gold answer, with only minor stylistic differences.",
+      "completeness_pct": 88.89,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 8
+    },
+    {
+      "question_id": "qst_0402",
+      "corrected": false,
+      "question_type": "constrained",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the cause (stale advisory lock), the resolution (DBA terminating the stale session), and lists the key Kubernetes-side artifacts to collect, aligning with the core information provided in the gold answer.",
+      "completeness_pct": 80.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 8
+    },
+    {
+      "question_id": "qst_0457",
+      "corrected": false,
+      "question_type": "miscellaneous",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly confirms the need for approval for items over 30 inches and lists the key details required for the request, aligning with the core information in the gold answer.",
+      "completeness_pct": 75.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 9
+    }
+  ]
+}
