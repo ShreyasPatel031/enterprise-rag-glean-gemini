@@ -1,0 +1,245 @@
+{
+  "aggregate_stats": {
+    "total_questions": 60,
+    "completed_questions": 18,
+    "skipped_rows": 0,
+    "num_corrected_questions": 0,
+    "average_correctness_pct": 27.78,
+    "average_completeness_pct": 37.83,
+    "combined_correctness_completeness_score": 25.69,
+    "average_recall_pct": 30.56,
+    "average_invalid_extra_docs": 0.06
+  },
+  "question_type_stats": {
+    "basic": {
+      "count": 6,
+      "average_correctness_pct": 33.33,
+      "average_completeness_pct": 33.33,
+      "combined_correctness_completeness_score": 33.33,
+      "average_recall_pct": 33.33,
+      "average_invalid_extra_docs": 0.0
+    },
+    "semantic": {
+      "count": 5,
+      "average_correctness_pct": 0.0,
+      "average_completeness_pct": 16.0,
+      "combined_correctness_completeness_score": 0.0,
+      "average_recall_pct": 0.0,
+      "average_invalid_extra_docs": 0.2
+    },
+    "intra_document_reasoning": {
+      "count": 1,
+      "average_correctness_pct": 100.0,
+      "average_completeness_pct": 100.0,
+      "combined_correctness_completeness_score": 100.0,
+      "average_recall_pct": 100.0,
+      "average_invalid_extra_docs": 0.0
+    },
+    "project_related": {
+      "count": 2,
+      "average_correctness_pct": 0.0,
+      "average_completeness_pct": 20.0,
+      "combined_correctness_completeness_score": 0.0,
+      "average_recall_pct": 25.0,
+      "average_invalid_extra_docs": 0.0
+    },
+    "constrained": {
+      "count": 3,
+      "average_correctness_pct": 33.33,
+      "average_completeness_pct": 61.99,
+      "combined_correctness_completeness_score": 29.17,
+      "average_recall_pct": 33.33,
+      "average_invalid_extra_docs": 0.0
+    },
+    "miscellaneous": {
+      "count": 1,
+      "average_correctness_pct": 100.0,
+      "average_completeness_pct": 75.0,
+      "combined_correctness_completeness_score": 75.0,
+      "average_recall_pct": 100.0,
+      "average_invalid_extra_docs": 0.0
+    }
+  },
+  "questions": [
+    {
+      "question_id": "qst_0023",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer provides the exact same list of required review roles and individuals as the gold answer.",
+      "completeness_pct": 100.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0025",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer provides a conflicting latency threshold (1 second vs 2000 ms) and sustained duration (>5 minutes vs 10 minutes).",
+      "completeness_pct": 0.0,
+      "document_recall_pct": 0.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0059",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer provides the exact same time window as the gold answer, which is the core information requested by the query.",
+      "completeness_pct": 100.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0086",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer is a programmatic search query and does not provide an answer to the user's question.",
+      "completeness_pct": 0.0,
+      "document_recall_pct": 0.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0135",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer is a search query and does not provide the step-by-step rollback plan requested by the user and detailed in the gold answer.",
+      "completeness_pct": 0.0,
+      "document_recall_pct": 0.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0151",
+      "corrected": false,
+      "question_type": "basic",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer is empty and only contains a tool call; it does not provide any information to answer the user's query.",
+      "completeness_pct": 0.0,
+      "document_recall_pct": 0.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0215",
+      "corrected": false,
+      "question_type": "semantic",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer is a tool call to perform a search and does not provide any of the explanatory information required by the query.",
+      "completeness_pct": 0.0,
+      "document_recall_pct": 0.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0216",
+      "corrected": false,
+      "question_type": "semantic",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer describes a different update process involving internal vs. external updates and severity levels, which conflicts with the single, unified rhythm for the shared channel described in the gold answer.",
+      "completeness_pct": 60.0,
+      "document_recall_pct": 0.0,
+      "invalid_extra_docs": 1
+    },
+    {
+      "question_id": "qst_0258",
+      "corrected": false,
+      "question_type": "semantic",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer does not provide an answer to the query, but instead shows a tool call intended to search for the answer.",
+      "completeness_pct": 0.0,
+      "document_recall_pct": 0.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0262",
+      "corrected": false,
+      "question_type": "semantic",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer describes a generic process for how to find an answer, whereas the gold answer directly provides the specific, detailed package requested by the query.",
+      "completeness_pct": 20.0,
+      "document_recall_pct": 0.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0282",
+      "corrected": false,
+      "question_type": "semantic",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer does not provide an answer to the user's query; instead, it shows a tool call representing a search query.",
+      "completeness_pct": 0.0,
+      "document_recall_pct": 0.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0327",
+      "corrected": false,
+      "question_type": "intra_document_reasoning",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies both billing unit primitives and provides the identical Confluence file path as the gold answer.",
+      "completeness_pct": 100.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0341",
+      "corrected": false,
+      "question_type": "project_related",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer fails to correctly address the \"how to verify\" part of the query, providing a vague, retrospective summary of what was done instead of the specific, forward-looking monitoring process outlined in the gold answer.",
+      "completeness_pct": 40.0,
+      "document_recall_pct": 50.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0361",
+      "corrected": false,
+      "question_type": "project_related",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer does not provide any information to answer the user's query; it only contains a tool call to search for the answer.",
+      "completeness_pct": 0.0,
+      "document_recall_pct": 0.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0388",
+      "corrected": false,
+      "question_type": "constrained",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer is a search query and does not provide any information about the root cause or the fix for the incident.",
+      "completeness_pct": 60.0,
+      "document_recall_pct": 0.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0390",
+      "corrected": false,
+      "question_type": "constrained",
+      "answer_correct": false,
+      "correctness_reasoning": "The candidate answer does not answer the user's query; it is a search query that contains none of the requested information about mitigations or RCA artifacts.",
+      "completeness_pct": 38.46,
+      "document_recall_pct": 0.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0395",
+      "corrected": false,
+      "question_type": "constrained",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly identifies the root cause (signing post-compression) and the planned fix (signing pre-compression), aligning with the core information in the gold answer.",
+      "completeness_pct": 87.5,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 0
+    },
+    {
+      "question_id": "qst_0457",
+      "corrected": false,
+      "question_type": "miscellaneous",
+      "answer_correct": true,
+      "correctness_reasoning": "The candidate answer correctly confirms the need for approval, lists the same required details for the request, and matches the specific size dimension mentioned in the gold answer.",
+      "completeness_pct": 75.0,
+      "document_recall_pct": 100.0,
+      "invalid_extra_docs": 0
+    }
+  ]
+}

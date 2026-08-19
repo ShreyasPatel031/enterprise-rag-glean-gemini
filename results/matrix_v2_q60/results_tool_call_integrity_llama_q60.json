@@ -1,0 +1,410 @@
+[
+  {
+    "path": "answer_evaluation/_matrix_v2/system_adk_llama-4-maverick.jsonl",
+    "total": 60,
+    "flagged": {
+      "qst_0025": [
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0390": [
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0215": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0282": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0151": [
+        "no_citations",
+        "pseudo_tool_call"
+      ],
+      "qst_0086": [
+        "no_citations",
+        "pseudo_tool_call"
+      ],
+      "qst_0361": [
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0135": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0395": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0341": [
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0457": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0129": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0223": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0382": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0076": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0244": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0013": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0293": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0400": [
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0174": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0402": [
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0012": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0115": [
+        "no_citations",
+        "pseudo_tool_call"
+      ],
+      "qst_0405": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0442": [
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0384": [
+        "no_citations",
+        "pseudo_tool_call"
+      ],
+      "qst_0210": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0211": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0441": [
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0381": [
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0338": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0236": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0444": [
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0248": [
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0102": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0396": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0179": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0449": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ]
+    },
+    "counts": {
+      "no_citations": 27,
+      "template_leak": 34,
+      "pseudo_tool_call": 38,
+      "malformed_document_ids": 0,
+      "missing_dsid_prefix": 0
+    },
+    "clean": 22
+  },
+  {
+    "path": "answer_evaluation/_matrix_v2/system_gleantoolkit_llama-4-maverick.jsonl",
+    "total": 60,
+    "flagged": {
+      "qst_0025": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0390": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0215": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0262": [
+        "no_citations",
+        "pseudo_tool_call"
+      ],
+      "qst_0282": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0151": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0086": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0388": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0361": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0135": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0258": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0198": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0223": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0382": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0076": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0244": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0013": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0293": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0400": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0402": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0012": [
+        "no_citations",
+        "pseudo_tool_call"
+      ],
+      "qst_0405": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0442": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0384": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0210": [
+        "no_citations",
+        "pseudo_tool_call"
+      ],
+      "qst_0241": [
+        "no_citations",
+        "pseudo_tool_call"
+      ],
+      "qst_0331": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0211": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0393": [
+        "no_citations",
+        "pseudo_tool_call"
+      ],
+      "qst_0387": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0171": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0441": [
+        "no_citations",
+        "pseudo_tool_call"
+      ],
+      "qst_0181": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0381": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0338": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0236": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0183": [
+        "no_citations",
+        "pseudo_tool_call"
+      ],
+      "qst_0444": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0096": [
+        "no_citations",
+        "pseudo_tool_call"
+      ],
+      "qst_0248": [
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0407": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0252": [
+        "no_citations",
+        "template_leak",
+        "pseudo_tool_call"
+      ],
+      "qst_0449": [
+        "template_leak",
+        "pseudo_tool_call"
+      ]
+    },
+    "counts": {
+      "no_citations": 41,
+      "template_leak": 35,
+      "pseudo_tool_call": 43,
+      "malformed_document_ids": 0,
+      "missing_dsid_prefix": 0
+    },
+    "clean": 17
+  }
+]
